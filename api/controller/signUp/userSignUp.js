@@ -15,7 +15,7 @@ const userSignUp = async (req, res) => {
     res.status(400).send('user already exist')
   }
 
-  const userToken = await setJwtToken({ name, email })
+  const userToken = await setJwtToken({ email })
 
   // encrypting  password
   const hashPassword = await bcrypt.hash(password, 10)
@@ -28,7 +28,11 @@ const userSignUp = async (req, res) => {
   })
 
   if (signUpUser) {
-    res.json({ result: signUpUser, userToken: `Bearer ${userToken}` })
+    res.json({
+      success: true,
+      result: signUpUser,
+      userToken: `Bearer ${userToken}`,
+    })
   }
 }
 
