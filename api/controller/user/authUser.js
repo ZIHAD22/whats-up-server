@@ -6,8 +6,6 @@ const authUser = async (req, res) => {
 
     const findUser = await User.findOne({ email })
 
-    console.log(findUser)
-
     if (!findUser) {
       return res.json({ result: false, user: 'User not Found' })
     }

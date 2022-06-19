@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 const setJwtToken = require('../../utility/setJwtToken')
 
 const userSignUp = async (req, res) => {
-  const { name, email, password, profileImg } = req.body
+  const { name, email, password, profilePic } = req.body
 
   if (!name || !email || !password) {
     res.status(400).send('Please Enter all info')
@@ -24,11 +24,11 @@ const userSignUp = async (req, res) => {
     name,
     email,
     password: hashPassword,
-    profileImg,
+    profilePic,
   })
 
   if (signUpUser) {
-    res.json({ result: signUpUser, userToken })
+    res.json({ result: signUpUser, userToken: `Bearer ${userToken}` })
   }
 }
 
