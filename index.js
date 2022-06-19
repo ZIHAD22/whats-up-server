@@ -4,6 +4,8 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const dataBase = require('./api/utility/dataBase')
 const signUp = require('./api/routes/SignUp/signUp')
+const user = require('./api/routes/user/user')
+const verifyUser = require('./api/utility/verifyUser')
 
 // app
 const app = express()
@@ -16,6 +18,7 @@ dataBase().catch((err) => console.log(err))
 app.use(cors())
 app.use(express.json())
 app.use('/signUp', signUp)
+app.use('/auth', verifyUser, user)
 
 // router
 app.get('/', (req, res) => {
