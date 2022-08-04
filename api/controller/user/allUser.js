@@ -1,18 +1,17 @@
-const User = require("../../models/User")
+const User = require("../../models/User");
 
-const allUser = async(req , res) => {
+const allUser = async (req, res) => {
+  const { email: loginUserEmail } = req.query;
 
-    const {email:loginUserEmail} = req.query
+  const result = await User.find({}).sort({ _id: -1 });
 
-    const result = await User.find({})
+  if (!result) {
+    return res.json({ success: false, result: "Not Found" });
+  }
 
-    if(!result){
-        return res.json({success:false , result:"Not Found"})
-    }
+  const filteredUser = result.filter((user) => user.email !== loginUserEmail);
 
-    const filteredUser = result.filter(user => user.email !== loginUserEmail)
+  res.json({ success: true, result: filteredUser });
+};
 
-    res.json({success:true , result:filteredUser})
-}
-
-module.exports = allUser
+module.exports = allUser;
