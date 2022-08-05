@@ -2,7 +2,6 @@ const User = require("../../models/User");
 
 const allUser = async (req, res) => {
   const { email: loginUserEmail, searchKey } = req.query;
-  console.log(searchKey);
 
   const result = await User.find({}).sort({ _id: -1 });
 
