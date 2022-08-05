@@ -19,6 +19,7 @@ const allUser = async (req, res) => {
     return res.json({ success: true, result: searchResult });
   }
 
+  console.log("all ok");
   res.json({ success: true, result: filteredUser });
 };
 
