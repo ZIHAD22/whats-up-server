@@ -9,6 +9,7 @@ const verifyUser = (req, res, next) => {
 
   const accessToken = token.split(' ')[1]
   const decodedToken = verifyAccessToken(accessToken)
+
   if (!decodedToken.decoded) {
     return res.status(403).send({ message: 'Forbidden Access' })
   } else {
