@@ -10,6 +10,10 @@ const getConversation = async (req, res) => {
         members: { $in: [userId] }
     })
 
+    if (conversation.length === 0) {
+        return res.status(404).send("No conversation found")
+    }
+
     res.json(conversation)
 }
 
