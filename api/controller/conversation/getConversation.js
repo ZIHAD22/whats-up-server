@@ -12,7 +12,7 @@ const getConversation = async (req, res) => {
     })
 
     if (conversation.length === 0) {
-        return res.status(404).send("No conversation found")
+        return res.status(404).json({ result: "no messages founded" })
     }
 
     const friendsId = conversation.map(con => con.members.find(member => member !== userId))
