@@ -4,7 +4,7 @@
   "description": "",
   "main": "socketServer.js",
   "scripts": {
-    "start": "NODE_ENV=production node app.js",
+    "start": "NODE_ENV=production node socketServer",
     "dev": "nodemon socketServer"
   },
   "keywords": [],
