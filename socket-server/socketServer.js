@@ -1,6 +1,14 @@
+let clientSide
+
+if (process.env.NODE_ENV === "production") {
+    clientSide = "https://whats-up-zihad.netlify.app/"
+} else {
+    clientSide = "http://localhost:3000"
+}
+
 const io = require("socket.io")(7000, {
     cors: {
-        origin: "http://localhost:3000"
+        origin: clientSide
     }
 })
 
