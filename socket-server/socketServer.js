@@ -6,6 +6,8 @@ if (process.env.NODE_ENV === "production") {
     clientSide = "http://localhost:3000"
 }
 
+console.log(clientSide);
+
 const io = require("socket.io")(7000, {
     cors: {
         origin: clientSide
