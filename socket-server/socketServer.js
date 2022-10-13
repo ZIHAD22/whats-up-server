@@ -10,7 +10,7 @@ console.log(clientSide);
 
 const io = require("socket.io")(7000, {
     cors: {
-        origin: clientSide
+        origin: "https://whats-up-zihad.netlify.app"
     }
 })
 
