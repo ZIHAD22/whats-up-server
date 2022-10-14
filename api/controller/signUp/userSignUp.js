@@ -5,14 +5,16 @@ const setJwtToken = require('../../utility/setJwtToken')
 const userSignUp = async (req, res) => {
   const { name, email, password, profilePic } = req.body
 
+  console.log(email);
+
   if (!name || !email || !password) {
-    res.status(400).send('Please Enter all info')
+    return res.status(400).send('Please Enter all info')
   }
 
   const userExist = await User.findOne({ email })
 
   if (userExist) {
-    res.status(400).send('user already exist')
+    return res.status(400).send('user already exist')
   }
 
   const userToken = await setJwtToken({ email })
@@ -28,7 +30,7 @@ const userSignUp = async (req, res) => {
   })
 
   if (signUpUser) {
-    res.json({
+    return res.json({
       success: true,
       result: signUpUser,
       userToken: `Bearer ${userToken}`,
