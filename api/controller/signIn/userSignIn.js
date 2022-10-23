@@ -5,7 +5,7 @@ const userSingIn = async (req, res) => {
   const { email, password } = req.body
 
   if (!email || !password) {
-    res.status(400).json('Please Enter all info')
+    return res.status(400).json('Please Enter all info')
   }
 
   const userToken = await setJwtToken({ email })
@@ -13,6 +13,14 @@ const userSingIn = async (req, res) => {
   //   console.log(userToken)
 
   const user = await User.findOne({ email })
+
+  if (!user?._id) {
+    return res.json({
+      success: false,
+      result: "Your Email is't correct Please check and  try again ",
+    })
+  }
+
   const encryptedPass = user.password
 
   const isValidUser = await bcrypt.compare(password, encryptedPass)
@@ -25,7 +33,7 @@ const userSingIn = async (req, res) => {
     })
   }
 
-  res.json({
+  return res.json({
     success: false,
     result: 'Password is Not Correct Please Check and TryAgan',
   })

@@ -17,6 +17,7 @@ const getConversation = async (req, res) => {
 
     const friendsId = conversation.map(con => con.members.find(member => member !== userId))
 
+
     const conversationFriends = await User.find({ _id: { $in: friendsId } })
 
     res.status(200).json({ conversation, conversationFriends })
