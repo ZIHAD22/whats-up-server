@@ -4,7 +4,7 @@ const User = require("../../models/User")
 const getConversation = async (req, res) => {
     const userId = req.params.userId
     if (!userId) {
-        res.status(400).send("Please Provide Info")
+      return  res.status(400).send("Please Provide Info")
     }
 
     const conversation = await Conversation.find({
